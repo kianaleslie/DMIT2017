@@ -1,5 +1,6 @@
 using System.IO;
 using System.Xml.Serialization;
+
 public class SaveManager 
 {
     public static void SaveData(string path, ref NameData myName)

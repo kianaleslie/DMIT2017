@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.IO;
 using TMPro;
+using UnityEngine.UI;
 
 public class SaveLoadTestScript : MonoBehaviour
 {
@@ -11,20 +12,51 @@ public class SaveLoadTestScript : MonoBehaviour
 
     [SerializeField] public GameObject[] profileButtons;
     [SerializeField] public GameObject hideInputField;
+    [SerializeField] public int profile;
+    [SerializeField] public GameObject profile1;
+    [SerializeField] public GameObject profile2;
+    [SerializeField] public GameObject profile3;
+    [SerializeField] public Button createProfileButton;
+    [SerializeField] public Button profile1Button;
+    [SerializeField] public Button profile2Button;
+    [SerializeField] public Button profile3Button;
 
     void Start()
     {
+        profile = 0;
         profileName = new NameData();
-        LoadProfile();
-        foreach(var profile in profileButtons)
+        //LoadProfile();
+        foreach (var profile in profileButtons)
         {
             profile.SetActive(false);
         }
         hideInputField.SetActive(false);
+        if (createProfileButton != null)
+        {
+            createProfileButton.onClick.AddListener(ShowProfileButtons);
+        }
+        profile1Button.onClick.AddListener(LoadProfile);
+        profile2Button.onClick.AddListener(LoadProfile);
+        profile3Button.onClick.AddListener(LoadProfile);
     }
     public void ChangeName(string newName)
     {
         profileName.playerName = newName;
+    }
+    public void ShowProfileButtons()
+    {
+        if (profile1 != null)
+        {
+            profile1.SetActive(true);
+        }
+        if (profile2 != null)
+        {
+            profile2.SetActive(true);
+        }
+        if (profile3 != null)
+        {
+            profile3.SetActive(true);
+        }
     }
     public void SaveProfile()
     {
@@ -40,7 +72,7 @@ public class SaveLoadTestScript : MonoBehaviour
     void CreateFileStructure()
     {
         // find if the firectory exists
-        if(Directory.Exists(filePath))
+        if (Directory.Exists(filePath))
         {
             Debug.Log("Folder already exists.");
         }
