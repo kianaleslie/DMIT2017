@@ -48,6 +48,11 @@ public class SaveLoadTestScript : MonoBehaviour
             profile3Button.onClick.AddListener(LoadProfile);
         }
     }
+    public void ChangeProfile(int selectProfile)
+    {
+        filePath = $"SaveData\\Profile{selectProfile}";
+        profileName.playerName = "";
+    }
     public void ChangeName(string newName)
     {
         profileName.playerName = newName;
