@@ -102,14 +102,14 @@ public class SaveLoadTestScript : MonoBehaviour
     }
     ////serializer is translating into a common form, can't save complex data structures like a Transform (BUT can save it by breaking it down (x, y, z)), can put in inheritance 
     //[SerializeField] NameData profileName;
-    //[SerializeField] TMP_InputField inputField;
+    //[SerializeField] TMP_InputField playerNameInputField;
     //[SerializeField] Slider valueSlider;
     //void Start()
     //{
     //    profileName = new NameData();
     //    LoadData();
     //}
-    //public void ChangeName(string newName)
+    //public void ChangePlayerName(string newName)
     //{
     //    profileName.playerName = newName;
     //}
@@ -127,7 +127,7 @@ public class SaveLoadTestScript : MonoBehaviour
     //    profileName = (NameData)xmlSerializer.Deserialize(stream);
     //    stream.Close();
 
-    //    inputField.text = profileName.playerName;
+    //    playerNameInputField.text = profileName.playerName;
     //}
 }
 
