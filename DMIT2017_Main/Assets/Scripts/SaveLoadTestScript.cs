@@ -35,9 +35,18 @@ public class SaveLoadTestScript : MonoBehaviour
         {
             createProfileButton.onClick.AddListener(ShowProfileButtons);
         }
-        profile1Button.onClick.AddListener(LoadProfile);
-        profile2Button.onClick.AddListener(LoadProfile);
-        profile3Button.onClick.AddListener(LoadProfile);
+        if (profile1Button != null)
+        {
+            profile1Button.onClick.AddListener(LoadProfile);
+        }
+        if (profile2Button != null)
+        {
+            profile2Button.onClick.AddListener(LoadProfile);
+        }
+        if (profile3Button != null)
+        {
+            profile3Button.onClick.AddListener(LoadProfile);
+        }
     }
     public void ChangeName(string newName)
     {
