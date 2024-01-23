@@ -2,28 +2,16 @@
 <SaveContainer xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <players>
     <Profile>
-      <name>cheese</name>
-      <colorIndex>1</colorIndex>
-      <shapeIndex>1</shapeIndex>
-      <score>20</score>
-    </Profile>
-    <Profile>
-      <name>blue</name>
-      <colorIndex>2</colorIndex>
-      <shapeIndex>2</shapeIndex>
-      <score>19</score>
-    </Profile>
-    <Profile>
-      <name>pops</name>
-      <colorIndex>3</colorIndex>
-      <shapeIndex>0</shapeIndex>
-      <score>21</score>
-    </Profile>
-    <Profile>
-      <name>you</name>
+      <name>chez</name>
       <colorIndex>0</colorIndex>
-      <shapeIndex>2</shapeIndex>
-      <score>48</score>
+      <shapeIndex>0</shapeIndex>
+      <score>34</score>
+    </Profile>
+    <Profile>
+      <name>hen</name>
+      <colorIndex>0</colorIndex>
+      <shapeIndex>1</shapeIndex>
+      <score>36</score>
     </Profile>
   </players>
   <leaders>
@@ -32,21 +20,21 @@
       <score>48</score>
     </TopScore>
     <TopScore>
+      <name>hen</name>
+      <score>36</score>
+    </TopScore>
+    <TopScore>
+      <name>chez</name>
+      <score>34</score>
+    </TopScore>
+    <TopScore>
+      <name>tim</name>
+      <score>22</score>
+    </TopScore>
+    <TopScore>
       <name>pops</name>
       <score>21</score>
     </TopScore>
-    <TopScore>
-      <name>cheese</name>
-      <score>20</score>
-    </TopScore>
-    <TopScore>
-      <name>blue</name>
-      <score>19</score>
-    </TopScore>
-    <TopScore>
-      <name>Empty</name>
-      <score>0</score>
-    </TopScore>
   </leaders>
-  <currentIndex>3</currentIndex>
+  <currentIndex>1</currentIndex>
 </SaveContainer>

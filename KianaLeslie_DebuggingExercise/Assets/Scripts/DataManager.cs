@@ -156,7 +156,7 @@ public class DataManager : MonoBehaviour
     public void ChangeColor(int changeColor)
     {
         myContainer.players[index].SetColor(changeColor);
-        UpdateProfileButtons();
+        //UpdateProfileButtons();
     }
     public void ChangeShape(int changeShape)
     {
