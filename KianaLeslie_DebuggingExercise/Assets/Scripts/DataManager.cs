@@ -33,7 +33,7 @@ public class DataManager : MonoBehaviour
     {
         myContainer = new SaveContainer();
         LoadData();
-        index = -1;
+        index = 0;
         playButton.interactable = false;
         deleteButton.interactable = false;
     }
@@ -156,6 +156,7 @@ public class DataManager : MonoBehaviour
     public void ChangeColor(int changeColor)
     {
         myContainer.players[index].SetColor(changeColor);
+        UpdateProfileButtons();
     }
     public void ChangeShape(int changeShape)
     {

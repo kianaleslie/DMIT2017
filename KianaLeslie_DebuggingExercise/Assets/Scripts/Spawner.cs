@@ -17,9 +17,9 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         LoadData();
-
         gameObject.GetComponent<MeshFilter>().sharedMesh = myShapes[myContainer.players[myContainer.currentIndex].GetShape()].GetComponent<MeshFilter>().sharedMesh;
         gameObject.GetComponent<Renderer>().material = myColors[myContainer.players[myContainer.currentIndex].GetColor()];
+
     }
 
     public void LoadData()
@@ -58,7 +58,7 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i < myContainer.leaders.Length; i++)
         {
-            if (myContainer.leaders[i].GetScore() > checkScore)
+            if (checkScore > myContainer.leaders[i].GetScore())
             {
                 tempScore = myContainer.leaders[i].GetScore();
                 tempName = myContainer.leaders[i].GetName();
