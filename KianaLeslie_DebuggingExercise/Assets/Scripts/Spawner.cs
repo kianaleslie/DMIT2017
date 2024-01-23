@@ -25,9 +25,9 @@ public class Spawner : MonoBehaviour
     public void LoadData()
     {
         // If the XML file exists then load the data.
-        if (File.Exists("SaveFiles/Profiles.xml"))
+        if (File.Exists("SaveFiles/Profiles"))
         {
-            Stream stream = File.Open("SaveFiles/Profiles.xml", FileMode.Open);
+            Stream stream = File.Open("SaveFiles/Profiles", FileMode.Open);
             XmlSerializer serializer = new XmlSerializer(typeof(SaveContainer));
             myContainer = serializer.Deserialize(stream) as SaveContainer;
             stream.Close();
@@ -43,7 +43,7 @@ public class Spawner : MonoBehaviour
 
         CheckTopScores(changeScore, myContainer.players[myContainer.currentIndex].GetName());
 
-        Stream stream = File.Open("Profiles.xml", FileMode.Create);
+        Stream stream = File.Open("SaveFiles/Profiles", FileMode.Create);
         XmlSerializer serializer = new XmlSerializer(typeof(SaveContainer));
         serializer.Serialize(stream, myContainer);
         stream.Close();

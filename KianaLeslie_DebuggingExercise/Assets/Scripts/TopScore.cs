@@ -7,7 +7,7 @@ public class TopScore // Saves the name and score for the top five all time scor
 {
     public string name;
     public int score;
- 
+
 
     public TopScore()
     {

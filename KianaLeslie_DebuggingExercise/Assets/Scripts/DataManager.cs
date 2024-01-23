@@ -11,6 +11,7 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.Profiling;
 
 public class DataManager : MonoBehaviour
 {
@@ -32,14 +33,14 @@ public class DataManager : MonoBehaviour
     {
         myContainer = new SaveContainer();
         LoadData();
-        //argument out of range exception - index cannot be negative
-        index = 0;
+        index = -1;
         playButton.interactable = false;
         deleteButton.interactable = false;
     }
     public void SaveData()
     {
-        Stream stream = File.Open("SaveFiles/Profiles.xml", FileMode.Create);
+        //CreateFileStructure();
+        Stream stream = File.Open("SaveFiles/Profiles", FileMode.Create);
         XmlSerializer serializer = new XmlSerializer(typeof(SaveContainer));
         serializer.Serialize(stream, myContainer);
         stream.Close();
@@ -47,9 +48,9 @@ public class DataManager : MonoBehaviour
     public void LoadData()
     {
         // If the XML file exists then load the data.
-        if (File.Exists("SaveFiles/Profiles.xml"))
+        if (File.Exists("SaveFiles/Profiles"))
         {
-            Stream stream = File.Open("SaveFiles/Profiles.xml", FileMode.Open);
+            Stream stream = File.Open("SaveFiles/Profiles", FileMode.Open);
             XmlSerializer serializer = new XmlSerializer(typeof(SaveContainer));
             myContainer = serializer.Deserialize(stream) as SaveContainer;
             stream.Close();
@@ -182,4 +183,17 @@ public class DataManager : MonoBehaviour
             SaveData();
         }
     }
+    //void CreateFileStructure()
+    //{
+    //    // find if the firectory exists
+    //    if (Directory.Exists("SaveFiles/Profiles"))
+    //    {
+    //        Debug.Log("Folder already exists.");
+    //    }
+    //    else
+    //    {
+    //        //try to create it
+    //        Directory.CreateDirectory("SaveFiles/Profiles");
+    //    }
+    //}
 }

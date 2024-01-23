@@ -16,6 +16,10 @@ public class SaveContainer
 
         for (int i = 0; i < leaders.Length; ++i)
         {
+            //foreach (var player in leaders)
+            //{
+            //    leaders[i] = new TopScore(player.name, player.score);
+            //}
             leaders[i] = new TopScore();
         }
     }
