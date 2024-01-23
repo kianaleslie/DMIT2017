@@ -104,6 +104,7 @@ public class DataManager : MonoBehaviour
         {
             // Remove the selected profile.
             myContainer.players.RemoveAt(index);
+            playButton.interactable = false;
 
             UpdateProfileButtons();
         }
