@@ -3821,9 +3821,9 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Yellow Car
+    - m_Text: Car
       m_Image: {fileID: 0}
-    - m_Text: Green Bike
+    - m_Text: Bike
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4861,7 +4861,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: Yellow
       m_Image: {fileID: 0}
-    - m_Text: 'Green '
+    - m_Text: Blue
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5584,7 +5584,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Yellow Car
+  m_text: Car
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0bda42ea0a8c4454c9d52719e9d1c21f, type: 2}
   m_sharedMaterial: {fileID: -7044032041570640772, guid: 0bda42ea0a8c4454c9d52719e9d1c21f, type: 2}

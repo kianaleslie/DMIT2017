@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
 { 
@@ -66,6 +67,10 @@ public class PlayerController : MonoBehaviour
         currentSpeed = 14.0f;
         //isUpdating = true;
     }
+    //public void FinishGame()
+    //{
+    //    GetComponent<PlayerSaveData>().SaveScore(score);
+    //}
     private void OnEnable()
     {
         movementAction.Enable();
