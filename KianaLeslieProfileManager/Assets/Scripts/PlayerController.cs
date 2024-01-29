@@ -30,6 +30,26 @@ public class PlayerController : MonoBehaviour
         }
         transform.Translate(new Vector3(movementValue.x, 0, movementValue.y) * currentSpeed * Time.deltaTime);
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("SpeedBoost"))
+        {
+            currentSpeed += 5.0f;
+            collision.gameObject.SetActive(false);
+            StartCoroutine(RemoveSpeedBoost());
+        }
+        else 
+            if(collision.gameObject.CompareTag("Obstacle"))
+        {
+            currentSpeed -= 5.0f;
+            collision.gameObject.SetActive(false);
+        }
+    }
+    IEnumerator RemoveSpeedBoost()
+    {
+        yield return new WaitForSeconds(3.0f);
+        currentSpeed -= 5.0f;
+    }
     IEnumerator Acceleration()
     {
         isUpdating = false;
@@ -53,10 +73,5 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         movementAction.Disable();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
     }
 }
