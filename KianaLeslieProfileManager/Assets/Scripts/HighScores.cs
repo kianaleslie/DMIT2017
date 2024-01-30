@@ -31,8 +31,8 @@ public class HighScores
     {
         name = changeName;
     }
-    public void SetTime(float setTime)
+    public void SetTime(float value)
     {
-        time = setTime;
+        time = value;
     }
 }
