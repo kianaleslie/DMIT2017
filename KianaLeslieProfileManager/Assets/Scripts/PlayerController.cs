@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     bool isUpdating = true;
     bool isTimerRunning = false;
     bool isFinished = false;
+    bool isLeaderboardUpdated = false;
 
     [SerializeField] public TMP_Text timerText;
     [SerializeField] public TMP_Text currentSpeedText;
@@ -88,6 +90,11 @@ public class PlayerController : MonoBehaviour
             isTimerRunning = false;
             timerText.text = $"Time: {timer}";
             isFinished = true;
+            if (!isLeaderboardUpdated)
+            {
+                isLeaderboardUpdated = true;
+                FinishGame();
+            }
             Time.timeScale = 0f;
             ghostUI.SetActive(true);
         }
@@ -118,6 +125,7 @@ public class PlayerController : MonoBehaviour
         saveController.profiles[DataManager.currentIndex].ghostData.vehicleType = saveController.profiles[DataManager.currentIndex].vehicleType;
         saveController.profiles[DataManager.currentIndex].ghostData.ghostPos = ghost;
         DataManager.SaveData(saveController);
+        SceneManager.LoadScene(0);
     }
     public void FinishGame()
     {

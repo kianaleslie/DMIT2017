@@ -14,25 +14,27 @@ public class PlayerSaveData : MonoBehaviour
 
     void Start()
     {
-        LoadData();
+        //LoadData();
+        saveController = DataManager.LoadData();
         gameObject.GetComponent<MeshFilter>().sharedMesh = vehicles[saveController.profiles[DataManager.currentIndex].Vehicle()].GetComponent<MeshFilter>().sharedMesh;
         gameObject.GetComponent<Renderer>().material = colours[saveController.profiles[DataManager.currentIndex].Colour()];
 
     }
 
-    public void LoadData()
-    {
-        if (File.Exists("SaveFiles\\Profiles"))
-        {
-            Stream stream = File.Open("SaveFiles\\Profiles", FileMode.Open);
-            XmlSerializer serializer = new XmlSerializer(typeof(SaveController));
-            saveController = serializer.Deserialize(stream) as SaveController;
-            stream.Close();
-        }
-    }
+    //public void LoadData()
+    //{
+    //    if (File.Exists("SaveFiles\\Profiles"))
+    //    {
+    //        Stream stream = File.Open("SaveFiles\\Profiles", FileMode.Open);
+    //        XmlSerializer serializer = new XmlSerializer(typeof(SaveController));
+    //        saveController = serializer.Deserialize(stream) as SaveController;
+    //        stream.Close();
+    //    }
+    //}
 
     public void SaveTime(float changeTime)
     {
+        saveController = DataManager.LoadData();
         if (changeTime > saveController.profiles[DataManager.currentIndex].Time())
         {
             saveController.profiles[DataManager.currentIndex].SetTime(changeTime);
@@ -44,8 +46,6 @@ public class PlayerSaveData : MonoBehaviour
         XmlSerializer serializer = new XmlSerializer(typeof(SaveController));
         serializer.Serialize(stream, saveController);
         stream.Close();
-
-        SceneManager.LoadScene(0);
     }
 
     void CheckTopTimes(float checkTime, string checkName)
