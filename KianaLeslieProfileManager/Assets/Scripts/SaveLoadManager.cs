@@ -40,9 +40,9 @@ public class SaveLoadManager : MonoBehaviour
         {
             saveController = DataManager.LoadData();
 
-            for (int i = 0; i < saveController.topTimes.Length; i++)
+            for (int index = 0; index < saveController.topTimes.Length; index++)
             {
-                topTimeText[i].text = $"{(i + 1)}: {saveController.topTimes[i].Name()} {saveController.topTimes[i].Score()}";
+                topTimeText[index].text = $"{(index + 1)}: {saveController.topTimes[index].Name()} {saveController.topTimes[index].Time()}";
             }
         }
         UpdateProfileButtons();

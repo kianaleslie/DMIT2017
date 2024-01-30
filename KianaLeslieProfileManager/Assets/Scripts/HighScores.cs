@@ -5,34 +5,34 @@ using UnityEngine;
 [System.Serializable]
 public class HighScores
 {
-    //saving the name and timer for highscore data
+    //saving the name and timer data
     public string name;
-    public float score;
+    public float time;
 
     public HighScores()
     {
         name = "None";
-        score = 0;
+        time = 0;
     }
-    public HighScores(string changeName, int changeScore)
+    public HighScores(string changeName, int changeTime)
     {
         name = changeName;
-        score = changeScore;
+        time = changeTime;
     }
     public string Name()
     {
         return name;
     }
-    public float Score()
+    public float Time()
     {
-        return score;
+        return time;
     }
     public void SetName(string changeName)
     {
         name = changeName;
     }
-    public void SetScore(float value)
+    public void SetTime(float setTime)
     {
-        score = value;
+        time = setTime;
     }
 }

@@ -31,14 +31,14 @@ public class PlayerSaveData : MonoBehaviour
         }
     }
 
-    public void SaveScore(float changeScore)
+    public void SaveTime(float changeTime)
     {
-        if (changeScore > saveController.profiles[DataManager.currentIndex].Time())
+        if (changeTime > saveController.profiles[DataManager.currentIndex].Time())
         {
-            saveController.profiles[DataManager.currentIndex].SetTime(changeScore);
+            saveController.profiles[DataManager.currentIndex].SetTime(changeTime);
         }
 
-        CheckTopScores(changeScore, saveController.profiles[DataManager.currentIndex].Name());
+        CheckTopTimes(changeTime, saveController.profiles[DataManager.currentIndex].Name());
 
         Stream stream = File.Open("SaveFiles\\Profiles", FileMode.Create);
         XmlSerializer serializer = new XmlSerializer(typeof(SaveController));
@@ -48,22 +48,22 @@ public class PlayerSaveData : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    void CheckTopScores(float checkScore, string checkName)
+    void CheckTopTimes(float checkTime, string checkName)
     {
-        float tempScore;
+        float tempTime;
         string tempName;
 
         for (int i = 0; i < saveController.topTimes.Length; i++)
         {
-            if (checkScore > saveController.topTimes[i].Score())
+            if (checkTime > saveController.topTimes[i].Time())
             {
-                tempScore = saveController.topTimes[i].Score();
+                tempTime = saveController.topTimes[i].Time();
                 tempName = saveController.topTimes[i].Name();
 
-                saveController.topTimes[i].SetScore(checkScore);
+                saveController.topTimes[i].SetTime(checkTime);
                 saveController.topTimes[i].SetName(checkName);
 
-                checkScore = tempScore;
+                checkTime = tempTime;
                 checkName = tempName;
             }
         }

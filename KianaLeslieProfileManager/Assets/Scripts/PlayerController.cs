@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     Vector2 movementValue;
 
     public float currentSpeed = 0.0f;
-    float timer = 30.0f;
+    float timer;
 
     bool isUpdating = true;
     bool isTimerRunning = false;
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        timer = 30.0f;
         saveController = new SaveController();
         saveController = DataManager.LoadData();
         ghostUI.SetActive(false);
@@ -120,7 +121,7 @@ public class PlayerController : MonoBehaviour
     }
     public void FinishGame()
     {
-        GetComponent<PlayerSaveData>().SaveScore(timer);
+        GetComponent<PlayerSaveData>().SaveTime(timer);
     }
     private void OnEnable()
     {

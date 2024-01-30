@@ -232,22 +232,27 @@ MonoBehaviour:
     profiles: []
     topTimes:
     - name: None
-      score: 0
+      time: 0
     - name: None
-      score: 0
+      time: 0
     - name: None
-      score: 0
+      time: 0
     - name: None
-      score: 0
+      time: 0
     - name: None
-      score: 0
+      time: 0
   profileButtons:
   - {fileID: 2144663708}
   - {fileID: 667716545}
   - {fileID: 528092442}
   playButton: {fileID: 631755834}
   deleteButton: {fileID: 1830086953}
-  topTimeText: []
+  topTimeText:
+  - {fileID: 1199874139}
+  - {fileID: 232403961}
+  - {fileID: 518973967}
+  - {fileID: 1966892919}
+  - {fileID: 1555711587}
   nameField: {fileID: 93809325}
   vehicleDropdown: {fileID: 688588389}
   colourDropdown: {fileID: 926106147}
@@ -9359,6 +9364,7 @@ GameObject:
   - component: {fileID: 1876783131}
   - component: {fileID: 1876783130}
   - component: {fileID: 1876783134}
+  - component: {fileID: 1876783135}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -9461,6 +9467,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb9226dc2158b848b91868f945fdc44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1876783135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876783129}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb664da972b63444824964b2b3f4ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveController:
+    profiles: []
+    topTimes:
+    - name: None
+      time: 0
+    - name: None
+      time: 0
+    - name: None
+      time: 0
+    - name: None
+      time: 0
+    - name: None
+      time: 0
+  profileButtons:
+  - {fileID: 2144663708}
+  - {fileID: 667716545}
+  - {fileID: 528092442}
+  playButton: {fileID: 631755834}
+  deleteButton: {fileID: 1830086953}
+  topTimeText:
+  - {fileID: 1199874139}
+  - {fileID: 232403961}
+  - {fileID: 518973967}
+  - {fileID: 1966892919}
+  - {fileID: 1555711587}
+  nameField: {fileID: 93809325}
+  vehicleDropdown: {fileID: 688588389}
+  colourDropdown: {fileID: 926106147}
+  timeText: {fileID: 1158137906}
+  index: 0
+  checkDeleteUI: {fileID: 1849400113}
 --- !u!1 &1877447193
 GameObject:
   m_ObjectHideFlags: 0
