@@ -23,12 +23,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public GameObject ghostUI;
     public List<GhostPosition> ghost;
     SaveController saveController;
-    SaveLoadManager saveLoadManager;
 
     void Start()
     {
         saveController = new SaveController();
-        saveLoadManager = new SaveLoadManager();
+        saveController = DataManager.LoadData();
         ghostUI.SetActive(false);
         ghost = new List<GhostPosition>();
     }
@@ -115,9 +114,9 @@ public class PlayerController : MonoBehaviour
     }
     public void OverwriteGhostData()
     {
-        saveController.profiles[saveController.currentIndex].ghostData.vehicleType = saveController.profiles[saveController.currentIndex].vehicleType;
-        saveController.profiles[saveController.currentIndex].ghostData.ghostPos = ghost;
-        saveLoadManager.SaveData();
+        saveController.profiles[DataManager.currentIndex].ghostData.vehicleType = saveController.profiles[DataManager.currentIndex].vehicleType;
+        saveController.profiles[DataManager.currentIndex].ghostData.ghostPos = ghost;
+        DataManager.SaveData(saveController);
     }
     public void FinishGame()
     {

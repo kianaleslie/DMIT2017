@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SaveController 
+public class SaveController
 {
     //saves profile data for highscores
     public List<ProfileManager> profiles;
-    public HighScores[] topScores;
-    public int currentIndex;
+    public HighScores[] topTimes;
 
     public SaveController()
     {
         profiles = new List<ProfileManager>();
-        topScores = new HighScores[5];
+        topTimes = new HighScores[5];
 
-        for (int index = 0; index < topScores.Length; index++)
+        for (int index = 0; index < topTimes.Length; index++)
         {
-            topScores[index] = new HighScores();
+            topTimes[index] = new HighScores();
         }
     }
     public void AddProfile()

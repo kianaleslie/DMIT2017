@@ -16,17 +16,18 @@ public class GhostController : MonoBehaviour
     void Start()
     {
         saveController = new SaveController();
+        saveController = DataManager.LoadData();
 
-        if (saveController.profiles[saveController.currentIndex].ghostData.ghostPos.Count > 0)
+        if (saveController.profiles[DataManager.currentIndex].ghostData.ghostPos.Count > 0)
         {
             rBody = GetComponent<Rigidbody>();
             isThereGhostData = true;
-            gameObject.GetComponent<MeshFilter>().sharedMesh = vehicles[saveController.profiles[saveController.currentIndex].ghostData.vehicleType].GetComponent<MeshFilter>().sharedMesh;
+            gameObject.GetComponent<MeshFilter>().sharedMesh = vehicles[saveController.profiles[DataManager.currentIndex].ghostData.vehicleType].GetComponent<MeshFilter>().sharedMesh;
             gameObject.GetComponent<Renderer>().material = transparentMaterial;
         }
         else
         {
-            saveController.profiles[saveController.currentIndex].ghostData.ghostPos = new List<GhostPosition>();
+            saveController.profiles[DataManager.currentIndex].ghostData.ghostPos = new List<GhostPosition>();
         }
     }
     void Update()
@@ -35,11 +36,11 @@ public class GhostController : MonoBehaviour
         if (isThereGhostData)
         {
             //check if the index is in range of the data
-            if(index < saveController.profiles[saveController.currentIndex].ghostData.ghostPos.Count)
+            if (index < saveController.profiles[DataManager.currentIndex].ghostData.ghostPos.Count)
             {
-                rBody.MovePosition(new Vector3(saveController.profiles[saveController.currentIndex].ghostData.ghostPos[index].x, saveController.profiles[saveController.currentIndex].ghostData.ghostPos[index].y, saveController.profiles[saveController.currentIndex].ghostData.ghostPos[index].z));
+                rBody.MovePosition(new Vector3(saveController.profiles[DataManager.currentIndex].ghostData.ghostPos[index].x, saveController.profiles[DataManager.currentIndex].ghostData.ghostPos[index].y, saveController.profiles[DataManager.currentIndex].ghostData.ghostPos[index].z));
                 index += 1;
-            }  
+            }
         }
     }
 }

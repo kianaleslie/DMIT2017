@@ -12,11 +12,11 @@ public class SaveLoadManager : MonoBehaviour
     public Button[] profileButtons;
     public Button playButton;
     public Button deleteButton;
-    public TMP_Text[] topHighScoreText;
+    public TMP_Text[] topTimeText;
     public TMP_InputField nameField;
     public TMP_Dropdown vehicleDropdown;
     public TMP_Dropdown colourDropdown;
-    public TMP_Text scoreText;
+    public TMP_Text timeText;
     public int index;
 
     [SerializeField] public GameObject checkDeleteUI;
@@ -32,24 +32,17 @@ public class SaveLoadManager : MonoBehaviour
     }
     public void SaveData()
     {
-        CreateFileStructure();
-        Stream stream = File.Open("SaveFiles\\Profiles", FileMode.Create);
-        XmlSerializer serializer = new XmlSerializer(typeof(SaveController));
-        serializer.Serialize(stream, saveController);
-        stream.Close();
+        DataManager.SaveData(saveController);
     }
     public void LoadData()
     {
         if (File.Exists("SaveFiles\\Profiles"))
         {
-            Stream stream = File.Open("SaveFiles\\Profiles", FileMode.Open);
-            XmlSerializer serializer = new XmlSerializer(typeof(SaveController));
-            saveController = serializer.Deserialize(stream) as SaveController;
-            stream.Close();
+            saveController = DataManager.LoadData();
 
-            for (int i = 0; i < saveController.topScores.Length; i++)
+            for (int i = 0; i < saveController.topTimes.Length; i++)
             {
-                topHighScoreText[i].text = $"{(i + 1)}: {saveController.topScores[i].Name()} {saveController.topScores[i].Score()}";
+                topTimeText[i].text = $"{(i + 1)}: {saveController.topTimes[i].Name()} {saveController.topTimes[i].Score()}";
             }
         }
         UpdateProfileButtons();
@@ -61,19 +54,19 @@ public class SaveLoadManager : MonoBehaviour
         {
             saveController.AddProfile();
             index = saveController.profiles.Count - 1;
-            saveController.currentIndex = index;
+            DataManager.currentIndex = index;
             UpdateProfileButtons();
         }
         else
         {
             //select the profile and set the index to the seleted profile and update the information associated 
             index = buttonIndex;
-            saveController.currentIndex = index;
+            DataManager.currentIndex = index;
         }
         nameField.text = saveController.profiles[index].Name();
         vehicleDropdown.value = saveController.profiles[index].Colour();
         colourDropdown.value = saveController.profiles[index].Vehicle();
-        scoreText.text = "Highscore: " + saveController.profiles[index].Score();
+        timeText.text = "Best Time: " + saveController.profiles[index].Time();
 
         playButton.interactable = true;
         deleteButton.interactable = true;
@@ -133,7 +126,6 @@ public class SaveLoadManager : MonoBehaviour
     }
     public void ChangeName(string changeName)
     {
-        Debug.Log(changeName);
         saveController.profiles[index].SetName(changeName);
         UpdateProfileButtons();
     }
@@ -146,16 +138,5 @@ public class SaveLoadManager : MonoBehaviour
     {
         saveController.profiles[index].SetColour(changeColour);
         UpdateProfileButtons();
-    }
-    void CreateFileStructure()
-    {
-        if (Directory.Exists("SaveFiles"))
-        {
-            Debug.Log("Folder already exists.");
-        }
-        else
-        {
-            Directory.CreateDirectory("SaveFiles");
-        }
     }
 }

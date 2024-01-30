@@ -9,7 +9,7 @@ public class ProfileManager
     public string name;
     public int vehicleType;
     public int colour;
-    public float score;
+    public float time;
     public GhostData ghostData;
 
     public ProfileManager()
@@ -17,15 +17,15 @@ public class ProfileManager
         name = "Profile";
         vehicleType = 0;
         colour = 0;
-        score = 0;
+        time = 0;
         ghostData = new GhostData();
     }
-    public ProfileManager(string changeName, int changeVehicle, int changeColour, int changeScore)
+    public ProfileManager(string changeName, int changeVehicle, int changeColour, int changeTime)
     {
         name = changeName;
         vehicleType = changeVehicle;
         colour = changeColour;
-        score = changeScore;
+        time = changeTime;
         ghostData = new GhostData();
     }
     public string Name()
@@ -40,9 +40,9 @@ public class ProfileManager
     {
         return colour;
     }
-    public float Score()
+    public float Time()
     {
-        return score;
+        return time;
     }
     public void SetName(string nameChange)
     {
@@ -56,8 +56,8 @@ public class ProfileManager
     {
         colour = colourChange;
     }
-    public void SetScore(float setScore)
+    public void SetTime(float setTime)
     {
-        score = setScore;
+        time = setTime;
     }
 }

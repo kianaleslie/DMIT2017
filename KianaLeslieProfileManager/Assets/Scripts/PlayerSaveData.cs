@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSaveData : MonoBehaviour
 {
-   public SaveController saveController;
+    public SaveController saveController;
 
     public Material[] colours;
     public GameObject[] vehicles;
@@ -15,8 +15,8 @@ public class PlayerSaveData : MonoBehaviour
     void Start()
     {
         LoadData();
-        gameObject.GetComponent<MeshFilter>().sharedMesh = vehicles[saveController.profiles[saveController.currentIndex].Vehicle()].GetComponent<MeshFilter>().sharedMesh;
-        gameObject.GetComponent<Renderer>().material = colours[saveController.profiles[saveController.currentIndex].Colour()];
+        gameObject.GetComponent<MeshFilter>().sharedMesh = vehicles[saveController.profiles[DataManager.currentIndex].Vehicle()].GetComponent<MeshFilter>().sharedMesh;
+        gameObject.GetComponent<Renderer>().material = colours[saveController.profiles[DataManager.currentIndex].Colour()];
 
     }
 
@@ -33,12 +33,12 @@ public class PlayerSaveData : MonoBehaviour
 
     public void SaveScore(float changeScore)
     {
-        if (changeScore > saveController.profiles[saveController.currentIndex].Score())
+        if (changeScore > saveController.profiles[DataManager.currentIndex].Time())
         {
-            saveController.profiles[saveController.currentIndex].SetScore(changeScore);
+            saveController.profiles[DataManager.currentIndex].SetTime(changeScore);
         }
 
-        CheckTopScores(changeScore, saveController.profiles[saveController.currentIndex].Name());
+        CheckTopScores(changeScore, saveController.profiles[DataManager.currentIndex].Name());
 
         Stream stream = File.Open("SaveFiles\\Profiles", FileMode.Create);
         XmlSerializer serializer = new XmlSerializer(typeof(SaveController));
@@ -53,15 +53,15 @@ public class PlayerSaveData : MonoBehaviour
         float tempScore;
         string tempName;
 
-        for (int i = 0; i < saveController.topScores.Length; i++)
+        for (int i = 0; i < saveController.topTimes.Length; i++)
         {
-            if (checkScore > saveController.topScores[i].Score())
+            if (checkScore > saveController.topTimes[i].Score())
             {
-                tempScore = saveController.topScores[i].Score();
-                tempName = saveController.topScores[i].Name();
+                tempScore = saveController.topTimes[i].Score();
+                tempName = saveController.topTimes[i].Name();
 
-                saveController.topScores[i].SetScore(checkScore);
-                saveController.topScores[i].SetName(checkName);
+                saveController.topTimes[i].SetScore(checkScore);
+                saveController.topTimes[i].SetName(checkName);
 
                 checkScore = tempScore;
                 checkName = tempName;

@@ -230,30 +230,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveController:
     profiles: []
-    topThreeHighScores:
+    topTimes:
     - name: None
       score: 0
     - name: None
       score: 0
     - name: None
       score: 0
-    currentIndex: 0
+    - name: None
+      score: 0
+    - name: None
+      score: 0
   profileButtons:
   - {fileID: 2144663708}
   - {fileID: 667716545}
   - {fileID: 528092442}
   playButton: {fileID: 631755834}
   deleteButton: {fileID: 1830086953}
-  topHighScoreText:
-  - {fileID: 1199874139}
-  - {fileID: 232403961}
-  - {fileID: 518973967}
-  - {fileID: 1966892919}
-  - {fileID: 1555711587}
+  topTimeText: []
   nameField: {fileID: 93809325}
   vehicleDropdown: {fileID: 688588389}
   colourDropdown: {fileID: 926106147}
-  scoreText: {fileID: 1158137906}
+  timeText: {fileID: 1158137906}
   index: 0
   checkDeleteUI: {fileID: 1849400113}
 --- !u!4 &17085976
