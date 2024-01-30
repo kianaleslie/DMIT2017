@@ -7,32 +7,47 @@ using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
-{ 
+{
     public InputAction movementAction;
     Vector2 movementValue;
+
     public float currentSpeed = 0.0f;
-    bool isUpdating = true;
     float timer = 30.0f;
+
+    bool isUpdating = true;
     bool isTimerRunning = false;
+    bool isFinished = false;
+
     [SerializeField] public TMP_Text timerText;
     [SerializeField] public TMP_Text currentSpeedText;
-    bool isFinished = false;
     [SerializeField] public GameObject ghostUI;
+    public List<GhostPosition> ghost;
+    SaveController saveController;
+    SaveLoadManager saveLoadManager;
 
     void Start()
     {
+        saveController = new SaveController();
+        saveLoadManager = new SaveLoadManager();
         ghostUI.SetActive(false);
+        ghost = new List<GhostPosition>();
     }
     void Update()
     {
         //player can move as long as the game is not finished
         if (!isFinished)
         {
+            GhostPosition ghostPosition = new GhostPosition();
+            ghostPosition.x = gameObject.transform.position.x;
+            ghostPosition.y = gameObject.transform.position.y;
+            ghostPosition.z = gameObject.transform.position.z;
+            ghost.Add(ghostPosition);
+
             movementValue = movementAction.ReadValue<Vector2>();
             if (!isUpdating && Input.GetKeyDown(KeyCode.W))
             {
                 isTimerRunning = true;
-                StartCoroutine(Acceleration());   
+                StartCoroutine(Acceleration());
             }
             if (Input.GetKeyUp(KeyCode.W))
             {
@@ -53,14 +68,14 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("SpeedBoost"))
+        if (collision.gameObject.CompareTag("SpeedBoost"))
         {
             currentSpeed += 5.0f;
             collision.gameObject.SetActive(false);
             StartCoroutine(RemoveSpeedBoost());
         }
-        else 
-            if(collision.gameObject.CompareTag("Obstacle"))
+        else
+            if (collision.gameObject.CompareTag("Obstacle"))
         {
             currentSpeed -= 5.0f;
             collision.gameObject.SetActive(false);
@@ -68,7 +83,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Finish"))
+        if (other.CompareTag("Finish"))
         {
             isTimerRunning = false;
             timerText.text = $"Time: {timer}";
@@ -97,6 +112,12 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         currentSpeed = 14.0f;
         //isUpdating = true;
+    }
+    public void OverwriteGhostData()
+    {
+        saveController.profiles[saveController.currentIndex].ghostData.vehicleType = saveController.profiles[saveController.currentIndex].vehicleType;
+        saveController.profiles[saveController.currentIndex].ghostData.ghostPos = ghost;
+        saveLoadManager.SaveData();
     }
     public void FinishGame()
     {

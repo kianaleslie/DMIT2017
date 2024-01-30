@@ -7,22 +7,22 @@ public class SaveController
 {
     //saves profile data for highscores
     public List<ProfileManager> profiles;
-    public HighScores[] topThreeHighScores;
+    public HighScores[] topScores;
     public int currentIndex;
 
     public SaveController()
     {
         profiles = new List<ProfileManager>();
-        topThreeHighScores = new HighScores[5];
+        topScores = new HighScores[5];
 
-        for (int index = 0; index < topThreeHighScores.Length; index++)
+        for (int index = 0; index < topScores.Length; index++)
         {
-            topThreeHighScores[index] = new HighScores();
+            topScores[index] = new HighScores();
         }
     }
     public void AddProfile()
     {
-        profiles.Add(new ProfileManager($"Profile {profiles.Count + 1}", 0, 0, 0));
+        profiles.Add(new ProfileManager("New", 0, 0, 0));
     }
     public void RemoveProfile(int index)
     {

@@ -10,6 +10,7 @@ public class ProfileManager
     public int vehicleType;
     public int colour;
     public float score;
+    public GhostData ghostData;
 
     public ProfileManager()
     {
@@ -17,6 +18,7 @@ public class ProfileManager
         vehicleType = 0;
         colour = 0;
         score = 0;
+        ghostData = new GhostData();
     }
     public ProfileManager(string changeName, int changeVehicle, int changeColour, int changeScore)
     {
@@ -24,6 +26,7 @@ public class ProfileManager
         vehicleType = changeVehicle;
         colour = changeColour;
         score = changeScore;
+        ghostData = new GhostData();
     }
     public string Name()
     {

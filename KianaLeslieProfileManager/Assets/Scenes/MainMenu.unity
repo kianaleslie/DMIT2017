@@ -3970,7 +3970,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: Car
       m_Image: {fileID: 0}
-    - m_Text: Bike
+    - m_Text: Scooter
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

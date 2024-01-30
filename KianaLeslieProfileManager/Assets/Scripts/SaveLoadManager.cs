@@ -21,7 +21,6 @@ public class SaveLoadManager : MonoBehaviour
 
     [SerializeField] public GameObject checkDeleteUI;
 
-
     void Start()
     {
         saveController = new SaveController();
@@ -48,9 +47,9 @@ public class SaveLoadManager : MonoBehaviour
             saveController = serializer.Deserialize(stream) as SaveController;
             stream.Close();
 
-            for (int i = 0; i < saveController.topThreeHighScores.Length; i++)
+            for (int i = 0; i < saveController.topScores.Length; i++)
             {
-                topHighScoreText[i].text = $"{(i + 1)}: {saveController.topThreeHighScores[i].Name()} {saveController.topThreeHighScores[i].Score()}";
+                topHighScoreText[i].text = $"{(i + 1)}: {saveController.topScores[i].Name()} {saveController.topScores[i].Score()}";
             }
         }
         UpdateProfileButtons();

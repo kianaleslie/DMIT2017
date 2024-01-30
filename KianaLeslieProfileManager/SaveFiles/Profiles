@@ -2,13 +2,17 @@
 <SaveController xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <profiles>
     <ProfileManager>
-      <name>Cheese</name>
-      <vehicleType>1</vehicleType>
-      <colour>1</colour>
+      <name>New</name>
+      <vehicleType>0</vehicleType>
+      <colour>0</colour>
       <score>0</score>
+      <ghostData>
+        <ghostPos />
+        <vehicleType>0</vehicleType>
+      </ghostData>
     </ProfileManager>
   </profiles>
-  <topThreeHighScores>
+  <topScores>
     <HighScores>
       <name>None</name>
       <score>0</score>
@@ -21,6 +25,14 @@
       <name>None</name>
       <score>0</score>
     </HighScores>
-  </topThreeHighScores>
+    <HighScores>
+      <name>None</name>
+      <score>0</score>
+    </HighScores>
+    <HighScores>
+      <name>None</name>
+      <score>0</score>
+    </HighScores>
+  </topScores>
   <currentIndex>0</currentIndex>
 </SaveController>

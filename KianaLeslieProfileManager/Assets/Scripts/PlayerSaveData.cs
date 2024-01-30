@@ -45,7 +45,7 @@ public class PlayerSaveData : MonoBehaviour
         serializer.Serialize(stream, saveController);
         stream.Close();
 
-        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 
     void CheckTopScores(float checkScore, string checkName)
@@ -53,15 +53,15 @@ public class PlayerSaveData : MonoBehaviour
         float tempScore;
         string tempName;
 
-        for (int i = 0; i < saveController.topThreeHighScores.Length; i++)
+        for (int i = 0; i < saveController.topScores.Length; i++)
         {
-            if (checkScore > saveController.topThreeHighScores[i].Score())
+            if (checkScore > saveController.topScores[i].Score())
             {
-                tempScore = saveController.topThreeHighScores[i].Score();
-                tempName = saveController.topThreeHighScores[i].Name();
+                tempScore = saveController.topScores[i].Score();
+                tempName = saveController.topScores[i].Name();
 
-                saveController.topThreeHighScores[i].SetScore(checkScore);
-                saveController.topThreeHighScores[i].SetName(checkName);
+                saveController.topScores[i].SetScore(checkScore);
+                saveController.topScores[i].SetName(checkName);
 
                 checkScore = tempScore;
                 checkName = tempName;
