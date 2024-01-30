@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,25 +12,44 @@ public class PlayerController : MonoBehaviour
     Vector2 movementValue;
     public float currentSpeed = 0.0f;
     bool isUpdating = true;
+    float timer = 30.0f;
+    bool isTimerRunning = false;
+    [SerializeField] public TMP_Text timerText;
+    [SerializeField] public TMP_Text currentSpeedText;
+    bool isFinished = false;
+    [SerializeField] public GameObject ghostUI;
 
     void Start()
     {
-
+        ghostUI.SetActive(false);
     }
     void Update()
     {
-        movementValue = movementAction.ReadValue<Vector2>();
-
-        if(!isUpdating && Input.GetKeyDown(KeyCode.W))
+        //player can move as long as the game is not finished
+        if (!isFinished)
         {
-            StartCoroutine(Acceleration());
+            movementValue = movementAction.ReadValue<Vector2>();
+            if (!isUpdating && Input.GetKeyDown(KeyCode.W))
+            {
+                isTimerRunning = true;
+                StartCoroutine(Acceleration());   
+            }
+            if (Input.GetKeyUp(KeyCode.W))
+            {
+                StopCoroutine(Acceleration());
+                isUpdating = false;
+            }
+            transform.Translate(new Vector3(movementValue.x, 0, movementValue.y) * currentSpeed * Time.deltaTime);
+            currentSpeedText.text = $"Current Speed: {currentSpeed}";
+            if (isTimerRunning)
+            {
+                if (timer > 0)
+                {
+                    timer -= Time.deltaTime;
+                    timerText.text = $"Time: {timer}";
+                }
+            }
         }
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            StopCoroutine(Acceleration());
-            isUpdating = false;
-        }
-        transform.Translate(new Vector3(movementValue.x, 0, movementValue.y) * currentSpeed * Time.deltaTime);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -44,6 +64,17 @@ public class PlayerController : MonoBehaviour
         {
             currentSpeed -= 5.0f;
             collision.gameObject.SetActive(false);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Finish"))
+        {
+            isTimerRunning = false;
+            timerText.text = $"Time: {timer}";
+            isFinished = true;
+            Time.timeScale = 0f;
+            ghostUI.SetActive(true);
         }
     }
     IEnumerator RemoveSpeedBoost()
@@ -67,10 +98,10 @@ public class PlayerController : MonoBehaviour
         currentSpeed = 14.0f;
         //isUpdating = true;
     }
-    //public void FinishGame()
-    //{
-    //    GetComponent<PlayerSaveData>().SaveScore(score);
-    //}
+    public void FinishGame()
+    {
+        GetComponent<PlayerSaveData>().SaveScore(timer);
+    }
     private void OnEnable()
     {
         movementAction.Enable();

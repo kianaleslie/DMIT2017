@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSaveData : MonoBehaviour
 {
-    public SaveController saveController;
+   public SaveController saveController;
 
     public Material[] colours;
     public GameObject[] vehicles;
@@ -22,16 +22,16 @@ public class PlayerSaveData : MonoBehaviour
 
     public void LoadData()
     {
-        if (File.Exists("SaveFiles/Profiles"))
+        if (File.Exists("SaveFiles\\Profiles"))
         {
-            Stream stream = File.Open("SaveFiles/Profiles", FileMode.Open);
+            Stream stream = File.Open("SaveFiles\\Profiles", FileMode.Open);
             XmlSerializer serializer = new XmlSerializer(typeof(SaveController));
             saveController = serializer.Deserialize(stream) as SaveController;
             stream.Close();
         }
     }
 
-    public void SaveScore(int changeScore)
+    public void SaveScore(float changeScore)
     {
         if (changeScore > saveController.profiles[saveController.currentIndex].Score())
         {
@@ -40,17 +40,17 @@ public class PlayerSaveData : MonoBehaviour
 
         CheckTopScores(changeScore, saveController.profiles[saveController.currentIndex].Name());
 
-        Stream stream = File.Open("SaveFiles/Profiles", FileMode.Create);
+        Stream stream = File.Open("SaveFiles\\Profiles", FileMode.Create);
         XmlSerializer serializer = new XmlSerializer(typeof(SaveController));
         serializer.Serialize(stream, saveController);
         stream.Close();
 
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
     }
 
-    void CheckTopScores(int checkScore, string checkName)
+    void CheckTopScores(float checkScore, string checkName)
     {
-        int tempScore;
+        float tempScore;
         string tempName;
 
         for (int i = 0; i < saveController.topThreeHighScores.Length; i++)

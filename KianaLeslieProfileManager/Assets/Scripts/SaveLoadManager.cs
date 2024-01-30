@@ -8,7 +8,7 @@ using TMPro;
 
 public class SaveLoadManager : MonoBehaviour
 {
-    SaveController saveController;
+    public SaveController saveController;
     public Button[] profileButtons;
     public Button playButton;
     public Button deleteButton;
@@ -19,6 +19,8 @@ public class SaveLoadManager : MonoBehaviour
     public TMP_Text scoreText;
     public int index;
 
+    [SerializeField] public GameObject checkDeleteUI;
+
 
     void Start()
     {
@@ -27,27 +29,28 @@ public class SaveLoadManager : MonoBehaviour
         index = 0;
         playButton.interactable = false;
         deleteButton.interactable = false;
+        checkDeleteUI.SetActive(false);
     }
     public void SaveData()
     {
         CreateFileStructure();
-        Stream stream = File.Open("SaveFiles/Profiles", FileMode.Create);
+        Stream stream = File.Open("SaveFiles\\Profiles", FileMode.Create);
         XmlSerializer serializer = new XmlSerializer(typeof(SaveController));
         serializer.Serialize(stream, saveController);
         stream.Close();
     }
     public void LoadData()
     {
-        if (File.Exists("SaveFiles/Profiles"))
+        if (File.Exists("SaveFiles\\Profiles"))
         {
-            Stream stream = File.Open("SaveFiles/Profiles", FileMode.Open);
+            Stream stream = File.Open("SaveFiles\\Profiles", FileMode.Open);
             XmlSerializer serializer = new XmlSerializer(typeof(SaveController));
             saveController = serializer.Deserialize(stream) as SaveController;
             stream.Close();
 
             for (int i = 0; i < saveController.topThreeHighScores.Length; i++)
             {
-                topHighScoreText[i].text = (i + 1) + ": " + saveController.topThreeHighScores[i].Name() + "  " + saveController.topThreeHighScores[i].Score();
+                topHighScoreText[i].text = $"{(i + 1)}: {saveController.topThreeHighScores[i].Name()} {saveController.topThreeHighScores[i].Score()}";
             }
         }
         UpdateProfileButtons();
@@ -76,6 +79,14 @@ public class SaveLoadManager : MonoBehaviour
         playButton.interactable = true;
         deleteButton.interactable = true;
     }
+    public void CheckDeleteProfile()
+    {
+        checkDeleteUI.SetActive(true);
+    }
+    public void CloseCheckDeleteProfilePanel()
+    {
+        checkDeleteUI.SetActive(false);
+    }
     public void DeleteProfile()
     {
         if (index < saveController.profiles.Count)
@@ -84,6 +95,7 @@ public class SaveLoadManager : MonoBehaviour
             playButton.interactable = false;
 
             UpdateProfileButtons();
+            CloseCheckDeleteProfilePanel();
         }
     }
     void UpdateProfileButtons()
@@ -97,13 +109,13 @@ public class SaveLoadManager : MonoBehaviour
         for (int i = 0; i < saveController.profiles.Count; i++)
         {
             profileButtons[i].gameObject.SetActive(true);
-            profileButtons[i].GetComponentInChildren<Text>().text = saveController.profiles[i].Name();
+            profileButtons[i].GetComponentInChildren<TMP_Text>().text = saveController.profiles[i].Name();
         }
         //if the number of profiles loaded is less than the profile buttons available then activate the next profile button and change the text
         if (saveController.profiles.Count < 3)
         {
             profileButtons[saveController.profiles.Count].gameObject.SetActive(true);
-            profileButtons[saveController.profiles.Count].GetComponentInChildren<Text>().text = "Add Profile";
+            profileButtons[saveController.profiles.Count].GetComponentInChildren<TMP_Text>().text = "Add Profile";
         }
 
         if (saveController.profiles.Count == 0)
@@ -122,6 +134,7 @@ public class SaveLoadManager : MonoBehaviour
     }
     public void ChangeName(string changeName)
     {
+        Debug.Log(changeName);
         saveController.profiles[index].SetName(changeName);
         UpdateProfileButtons();
     }
@@ -137,13 +150,13 @@ public class SaveLoadManager : MonoBehaviour
     }
     void CreateFileStructure()
     {
-        if (Directory.Exists("SaveFiles/Profiles"))
+        if (Directory.Exists("SaveFiles"))
         {
             Debug.Log("Folder already exists.");
         }
         else
         {
-            Directory.CreateDirectory("SaveFiles/Profiles");
+            Directory.CreateDirectory("SaveFiles");
         }
     }
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class HighScores
 {
-    //saving the name and score for highscore data
+    //saving the name and timer for highscore data
     public string name;
-    public int score;
+    public float score;
 
     public HighScores()
     {
@@ -23,7 +23,7 @@ public class HighScores
     {
         return name;
     }
-    public int Score()
+    public float Score()
     {
         return score;
     }
@@ -31,7 +31,7 @@ public class HighScores
     {
         name = changeName;
     }
-    public void SetScore(int value)
+    public void SetScore(float value)
     {
         score = value;
     }

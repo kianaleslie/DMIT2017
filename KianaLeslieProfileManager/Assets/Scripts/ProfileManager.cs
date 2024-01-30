@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ProfileManager : MonoBehaviour
+public class ProfileManager
 {
     //saving profile name, vehicle type, colour, and highscore for each profile - referenced "Debugging exercise"
-    public new string name;
+    public string name;
     public int vehicleType;
     public int colour;
-    public int score;
+    public float score;
 
     public ProfileManager()
     {
@@ -37,7 +37,7 @@ public class ProfileManager : MonoBehaviour
     {
         return colour;
     }
-    public int Score()
+    public float Score()
     {
         return score;
     }
@@ -53,7 +53,7 @@ public class ProfileManager : MonoBehaviour
     {
         colour = colourChange;
     }
-    public void SetScore(int setScore)
+    public void SetScore(float setScore)
     {
         score = setScore;
     }

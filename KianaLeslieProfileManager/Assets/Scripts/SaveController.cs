@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SaveController : MonoBehaviour
+public class SaveController 
 {
     //saves profile data for highscores
     public List<ProfileManager> profiles;
@@ -13,7 +13,7 @@ public class SaveController : MonoBehaviour
     public SaveController()
     {
         profiles = new List<ProfileManager>();
-        topThreeHighScores = new HighScores[3];
+        topThreeHighScores = new HighScores[5];
 
         for (int index = 0; index < topThreeHighScores.Length; index++)
         {
