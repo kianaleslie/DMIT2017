@@ -12,13 +12,15 @@ public class PlayerController : MonoBehaviour
     public InputAction movementAction;
     Vector2 movementValue;
 
-    public float currentSpeed = 0.0f;
+    public float currentSpeed = 5.0f;
     float timer;
+    float countdown;
 
     bool isUpdating = true;
     bool isTimerRunning = false;
     bool isFinished = false;
     bool isLeaderboardUpdated = false;
+    bool hasSpeedBoost = false;
 
     [SerializeField] public TMP_Text timerText;
     [SerializeField] public TMP_Text currentSpeedText;
@@ -28,7 +30,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        timer = 30.0f;
+        timer = 0.0f;
+        countdown = 30.0f;
         saveController = new SaveController();
         saveController = DataManager.LoadData();
         ghostUI.SetActive(false);
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour
             ghost.Add(ghostPosition);
 
             movementValue = movementAction.ReadValue<Vector2>();
+
             if (!isUpdating && Input.GetKeyDown(KeyCode.W))
             {
                 isTimerRunning = true;
@@ -56,14 +60,21 @@ public class PlayerController : MonoBehaviour
                 StopCoroutine(Acceleration());
                 isUpdating = false;
             }
+
             transform.Translate(new Vector3(movementValue.x, 0, movementValue.y) * currentSpeed * Time.deltaTime);
             currentSpeedText.text = $"Current Speed: {currentSpeed}";
+
+          
             if (isTimerRunning)
             {
-                if (timer > 0)
+                if (countdown > 0)
                 {
-                    timer -= Time.deltaTime;
-                    timerText.text = $"Time: {timer}";
+                    countdown -= Time.deltaTime;
+                    timerText.text = $"Time: {countdown.ToString("0.0")}";
+                }
+                if (timer < 30)
+                {
+                    timer += Time.deltaTime;
                 }
             }
         }
@@ -72,6 +83,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("SpeedBoost"))
         {
+            hasSpeedBoost = true;
             currentSpeed += 5.0f;
             collision.gameObject.SetActive(false);
             StartCoroutine(RemoveSpeedBoost());
@@ -79,8 +91,9 @@ public class PlayerController : MonoBehaviour
         else
             if (collision.gameObject.CompareTag("Obstacle"))
         {
-            currentSpeed -= 5.0f;
+            currentSpeed -= 2.0f;
             collision.gameObject.SetActive(false);
+            StartCoroutine(ReturnRegularSpeed());
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -88,7 +101,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Finish"))
         {
             isTimerRunning = false;
-            timerText.text = $"Time: {timer}";
+            timerText.text = $"Time: {countdown.ToString("0.0")}";
             isFinished = true;
             if (!isLeaderboardUpdated)
             {
@@ -103,29 +116,44 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);
         currentSpeed -= 5.0f;
+        hasSpeedBoost = false;
+    }
+    IEnumerator ReturnRegularSpeed()
+    {
+        yield return new WaitForSeconds(1.5f);
+        currentSpeed += 5.0f;
     }
     IEnumerator Acceleration()
     {
         isUpdating = false;
-        currentSpeed = 3.0f;
-        yield return new WaitForSeconds(2.0f);
-        currentSpeed = 5.0f;
-        yield return new WaitForSeconds(2.0f);
+        //if(currentSpeed < 14.0f)
+        //{
+        //    for(int i = 0; i < currentSpeed; i++)
+        //    {
+        //        yield return new WaitForSeconds(1.0f);
+        //        currentSpeed++;
+        //    } 
+        //}
+        yield return new WaitForSeconds(1.0f);
         currentSpeed = 7.0f;
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         currentSpeed = 9.0f;
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
+        currentSpeed = 10.0f;
+        yield return new WaitForSeconds(1.0f);
         currentSpeed = 11.0f;
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         currentSpeed = 14.0f;
+        yield return new WaitForSeconds(1.0f);
+        currentSpeed = 16.0f;
         //isUpdating = true;
     }
     public void OverwriteGhostData()
     {
+        saveController = DataManager.LoadData();
         saveController.profiles[DataManager.currentIndex].ghostData.vehicleType = saveController.profiles[DataManager.currentIndex].vehicleType;
         saveController.profiles[DataManager.currentIndex].ghostData.ghostPos = ghost;
         DataManager.SaveData(saveController);
-        SceneManager.LoadScene(0);
     }
     public void FinishGame()
     {

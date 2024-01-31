@@ -18,7 +18,6 @@ public class SaveLoadManager : MonoBehaviour
     public TMP_Dropdown colourDropdown;
     public TMP_Text timeText;
     public int index;
-
     [SerializeField] public GameObject checkDeleteUI;
 
     void Start()
@@ -42,7 +41,7 @@ public class SaveLoadManager : MonoBehaviour
 
             for (int index = 0; index < saveController.topTimes.Length; index++)
             {
-                topTimeText[index].text = $"{(index + 1)}: {saveController.topTimes[index].Name()} {saveController.topTimes[index].Time()}";
+                topTimeText[index].text = $"{(index + 1)}: {saveController.topTimes[index].Name()} {saveController.topTimes[index].Time().ToString("0.0")}";
             }
         }
         UpdateProfileButtons();
@@ -66,7 +65,7 @@ public class SaveLoadManager : MonoBehaviour
         nameField.text = saveController.profiles[index].Name();
         vehicleDropdown.value = saveController.profiles[index].Colour();
         colourDropdown.value = saveController.profiles[index].Vehicle();
-        timeText.text = "Best Time: " + saveController.profiles[index].Time();
+        timeText.text = $"Best Time: {saveController.profiles[index].Time().ToString("0.0")} secs";
 
         playButton.interactable = true;
         deleteButton.interactable = true;
