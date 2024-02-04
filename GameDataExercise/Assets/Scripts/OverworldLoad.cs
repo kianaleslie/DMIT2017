@@ -21,7 +21,8 @@ public class OverworldLoad : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         if (PlayerInfo.piInstance.spawnLocation != Vector3.zero)
         {
-            player.transform.position = PlayerInfo.piInstance.spawnLocation;
+            //                          what specific town location + player's spawn locaton * 4 because its finding the distance of the center to the spawn but it has to be small because the town in overworld is smaller than in the scene
+            player.transform.position = PlayerInfo.piInstance.townLocation + PlayerInfo.piInstance.spawnLocation.normalized * 4f;
 
         }
         else

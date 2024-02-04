@@ -7,12 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     Animator anim;
     float vInput, hInput, movementSpeed, rotationSpeed;
-    [SerializeField]
-    GameObject model;
-    [SerializeField]
-    Image fogPanel;
-    [SerializeField]
-    bool fade, fadeOn;
+    [SerializeField] GameObject model;
+    [SerializeField] RawImage fogPanel;
+    [SerializeField] bool fade, fadeOn;
     
     // Start is called before the first frame update
     void Start()

@@ -5,10 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class TownLoad : MonoBehaviour
 {
-    [SerializeField]
-    Transform exitLocation;
-    [SerializeField]
-    string townName;
+    [SerializeField] Transform exitLocation;
+    [SerializeField] string townName;
     bool transition = false;
     PlayerController player;
 
@@ -25,7 +23,9 @@ public class TownLoad : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            PlayerInfo.piInstance.spawnLocation = exitLocation.position;
+            //                                    players last pos the moment it hit the trigger - the angle of the spawn 
+            PlayerInfo.piInstance.spawnLocation = other.transform.position - transform.position;
+            PlayerInfo.piInstance.townLocation = transform.position;
             PlayerInfo.piInstance.currentScene = townName;
             player = other.GetComponent<PlayerController>();
             player.Fade(true);
