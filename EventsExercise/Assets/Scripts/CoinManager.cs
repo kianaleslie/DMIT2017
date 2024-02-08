@@ -7,18 +7,20 @@ public class CoinManager : MonoBehaviour
 {
     [SerializeField] public int coin;
     [SerializeField] bool isCoinRed;
+    bool hasTimerStarted = false;
 
     private void Update()
     {
-        if(isCoinRed)
+        if(isCoinRed && !hasTimerStarted)
         {
+            hasTimerStarted = true;
             StartCoroutine(Wait());
         }
     }
     IEnumerator Wait()
     {
-        isCoinRed = true; 
         yield return new WaitForSeconds(10.0f);
+        Destroy(gameObject);
     }
     private void OnCollisionEnter(Collision collision)
     {
