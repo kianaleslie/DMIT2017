@@ -1,31 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CoinManager : MonoBehaviour
 {
-    [SerializeField] public GameObject[] coins;
+    [SerializeField] public int coin;
+    [SerializeField] bool isCoinRed;
 
-    
-
-    private void Start()
+    private void Update()
     {
-        EventManager.SpawnCoin.AddListener(SpawnCoin);
+        if(isCoinRed)
+        {
+            StartCoroutine(Wait());
+        }
     }
-    void SpawnCoin()
+    IEnumerator Wait()
     {
-        
-        
-    }
-    void CollectCoin()
-    {
-
+        isCoinRed = true; 
+        yield return new WaitForSeconds(10.0f);
     }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            EventManager.Activate.AddListener(CollectCoin);
+            EventManager.CollectCoin.Invoke(coin);
+            Destroy(gameObject);
         }
     }
 }
