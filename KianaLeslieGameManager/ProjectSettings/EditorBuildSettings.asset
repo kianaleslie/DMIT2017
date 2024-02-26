@@ -4,5 +4,26 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: c16e521ac4e351641b8af1e7959ffaaf
+  - enabled: 1
+    path: Assets/Scenes/Overworld.unity
+    guid: 34d7136d8014a594594ea052a4487998
+  - enabled: 1
+    path: Assets/Scenes/Player.unity
+    guid: a7ebf698277b3734cad3506d5e9017e1
+  - enabled: 1
+    path: Assets/Scenes/Town1.unity
+    guid: bfe1610b0f79def4caa3842820fb88ff
+  - enabled: 1
+    path: Assets/Scenes/Town2.unity
+    guid: 8a164e01ad505fe44abdc83ea4054d35
+  - enabled: 1
+    path: Assets/Scenes/Town3.unity
+    guid: 2cec6efd2b228124db64663925cd5d73
+  - enabled: 1
+    path: Assets/Scenes/Town4.unity
+    guid: 1927ebe8cd37812469cb6fd13816deea
   m_configObjects: {}
