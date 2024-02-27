@@ -2053,6 +2053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 5019820719172984702, guid: a57d33c9a9202f8469ae36cfb840c63f, type: 3}
   bulletSpawn: {fileID: 1454160291}
+  health: {fileID: 1891153232}
   treasureText: {fileID: 2134080251}
   restText: {fileID: 1458784727}
 --- !u!136 &1891153234
@@ -2065,10 +2066,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.33987433
+  m_Height: 1.1785159
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.001642108, y: 0.75175285, z: 0.013726413}
 --- !u!54 &1891153235
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2078,7 +2079,7 @@ Rigidbody:
   m_GameObject: {fileID: 1891153230}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 5
   m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0

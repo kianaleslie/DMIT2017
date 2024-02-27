@@ -6,6 +6,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    //public InputAction movementAction;
+    //public InputAction rotationAction;
+    //Vector2 movementValue;
+    //Vector2 rotationValue;
+
     Rigidbody rb;
     //float verticleInput;
     //float horizontalInput;
@@ -28,6 +33,9 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        //movementValue = movementAction.ReadValue<Vector2>();
+        //rotationValue = rotationAction.ReadValue<Vector2>();
+
         if (!isPlayerResting)
         {
             //verticleInput = Input.GetAxis("Vertical");
@@ -39,6 +47,10 @@ public class PlayerController : MonoBehaviour
 
             transform.Rotate(Vector3.up, Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime);
             rb.AddRelativeForce(Vector3.forward * Input.GetAxis("Vertical") * moveSpeed);
+
+            //transform.Translate(new Vector3(movementValue.x, 0, movementValue.y) * moveSpeed * Time.deltaTime);
+            //transform.Rotate(Vector3.up, rotationValue.x * rotateSpeed * Time.deltaTime);
+
             if (Input.GetMouseButtonDown(0))
             {
                 var bulletObject = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
@@ -72,4 +84,14 @@ public class PlayerController : MonoBehaviour
         restText.text = "";
         isPlayerResting = false;
     }
+    //private void OnEnable()
+    //{
+    //    movementAction.Enable();
+    //    rotationAction.Enable();
+    //}
+    //private void OnDisable()
+    //{
+    //    movementAction.Disable();
+    //    rotationAction.Disable();
+    //}
 }
