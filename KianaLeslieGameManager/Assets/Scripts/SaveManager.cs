@@ -11,6 +11,7 @@ public class SaveManager : MonoBehaviour
 
     public static void SaveData()
     {
+        playerInfo.spawnLocation = playerInfo.currentLocation;
         if (!Directory.Exists(path))
         {
             Directory.CreateDirectory(path);

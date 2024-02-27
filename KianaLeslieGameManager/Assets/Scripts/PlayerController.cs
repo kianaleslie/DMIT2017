@@ -19,17 +19,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject bulletSpawn;
     public HealthUI health;
+    [SerializeField] GameObject treasure;
     [SerializeField] TextMeshProUGUI treasureText;
     [SerializeField] TextMeshProUGUI restText;
-    bool isPlayerResting = false;
+    bool isPlayerResting;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         moveSpeed = 10.0f;
         rotateSpeed = 50.0f;
-
+        isPlayerResting = false;
         restText.text = "";
+    }
+    private void FixedUpdate()
+    {
+        if (!isPlayerResting)
+        {
+            transform.Rotate(Vector3.up, Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime);
+            rb.AddRelativeForce(Vector3.forward * Input.GetAxis("Vertical") * moveSpeed);
+        }
     }
     private void Update()
     {
@@ -45,8 +54,8 @@ public class PlayerController : MonoBehaviour
             //transform.Translate(new Vector3(horizontalInput * moveSpeed * Time.deltaTime, 0, verticleInput * moveSpeed * Time.deltaTime));
             //transform.rotation = Quaternion.identity;
 
-            transform.Rotate(Vector3.up, Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime);
-            rb.AddRelativeForce(Vector3.forward * Input.GetAxis("Vertical") * moveSpeed);
+            //transform.Rotate(Vector3.up, Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime);
+            //rb.AddRelativeForce(Vector3.forward * Input.GetAxis("Vertical") * moveSpeed);
 
             //transform.Translate(new Vector3(movementValue.x, 0, movementValue.y) * moveSpeed * Time.deltaTime);
             //transform.Rotate(Vector3.up, rotationValue.x * rotateSpeed * Time.deltaTime);

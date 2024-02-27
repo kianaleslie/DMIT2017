@@ -7,8 +7,10 @@ public class PlayerInfo : MonoBehaviour
 {
     public static PlayerInfo piInstance = null;
     public Vector3 spawnLocation;
+    public Vector3 currentLocation;
     public Vector3 townLocation;
     public string currentScene;
+    public int treasure;
 
     private void Awake()
     {
