@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] Button resumeButton;
-
     void Start()
     {
         Load();
@@ -22,15 +20,8 @@ public class MenuManager : MonoBehaviour
             XmlSerializer serializer = new XmlSerializer(typeof(PlayerInfo));
             SaveManager.playerInfo = (PlayerInfo)serializer.Deserialize(stream);
             stream.Close();
-            resumeButton.interactable = true;
-        }
-        else
-        {
-            resumeButton.interactable = false;
-            //SaveManager.playerInfo = new PlayerInfo();
         }
     }
-
     public void Resume()
     {
         SceneManager.LoadScene(SaveManager.playerInfo.currentScene);
@@ -42,7 +33,7 @@ public class MenuManager : MonoBehaviour
         {
             File.Delete($"{SaveManager.path} /GameData");
         }
-        SceneManager.LoadScene("Overworld");
+        SceneManager.LoadScene(1);
     }
     public void Quit()
     {
