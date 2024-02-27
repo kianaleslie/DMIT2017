@@ -26,17 +26,6 @@ public class PlayerController : MonoBehaviour
 
         restText.text = "";
     }
-
-    private void FixedUpdate()
-    {
-
-        if (!isPlayerResting)
-        {
-            transform.Rotate(Vector3.up, Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime);
-            rb.AddRelativeForce(Vector3.forward * Input.GetAxis("Vertical") * moveSpeed);
-        }
-    }
-
     private void Update()
     {
         if (!isPlayerResting)
@@ -48,14 +37,15 @@ public class PlayerController : MonoBehaviour
             //transform.Translate(new Vector3(horizontalInput * moveSpeed * Time.deltaTime, 0, verticleInput * moveSpeed * Time.deltaTime));
             //transform.rotation = Quaternion.identity;
 
+            transform.Rotate(Vector3.up, Input.GetAxis("Horizontal") * rotateSpeed * Time.deltaTime);
+            rb.AddRelativeForce(Vector3.forward * Input.GetAxis("Vertical") * moveSpeed);
             if (Input.GetMouseButtonDown(0))
-        {
-            var bulletObject = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
-            bulletObject.GetComponent<Rigidbody>().velocity = bulletObject.transform.TransformDirection(Vector3.forward * 15.0f);
-        }
+            {
+                var bulletObject = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+                bulletObject.GetComponent<Rigidbody>().velocity = bulletObject.transform.TransformDirection(Vector3.forward * 15.0f);
+            }
         }
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("EnemyBullet"))
@@ -67,7 +57,6 @@ public class PlayerController : MonoBehaviour
             treasureText.text = "Treasure Collected!";
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Inn") && !isPlayerResting)

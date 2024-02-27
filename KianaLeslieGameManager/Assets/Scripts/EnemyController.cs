@@ -6,19 +6,23 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-    float attackRange = 10f;
-    float attackDamage = 3f;
-    float attackCooldown = 1f;
+    float timer;
+    float attackRange = 10.0f;
+    float attackCooldown = 1.0f;
     float attackTime;
 
-    int enemyCount = 3;
+    public int enemyCount = 3;
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject bulletSpawn;
+    [SerializeField] GameObject treasure; 
+    public HealthUI health;
     Transform player;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        treasure.SetActive(false);
     }
-
     void Update()
     {
         if (Vector3.Distance(transform.position, player.position) <= attackRange)
@@ -26,45 +30,29 @@ public class EnemyController : MonoBehaviour
             AttackPlayer();
         }
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            health.DealDamage(10);
+        }
+    }
     void AttackPlayer()
     {
+        transform.transform.LookAt(player.transform.position);
+        var bulletObject = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+        bulletObject.GetComponent<Rigidbody>().velocity = bulletObject.transform.TransformDirection(Vector3.forward * 15.0f);
+        //don't attack too fast - need a cooldown
         if (Time.time - attackTime >= attackCooldown)
         {
             PlayerController playerController = player.GetComponent<PlayerController>();
             if (playerController != null)
             {
-                playerController.health.DealDamage((int)attackDamage);
+                playerController.health.DealDamage(3);
             }
             attackTime = Time.time;
         }
     }
-    //public Image mapImage;
-    //public Image youAreHereImage;
-    //public Image xImage;
-    //public TMP_Text youAreHereText;
-    //public TMP_Text xText;
-    //public TMP_Text itemCountText;
-    //[SerializeField] public GameObject treasureChest;
-    //[SerializeField] public GameObject questCube;
-
-    //int itemCount = 0;
-    //int enemyCount = 3;
-
-    //private void Start()
-    //{
-    //    mapImage.enabled = false;
-    //    youAreHereImage.enabled = false;
-    //    xImage.enabled = false;
-    //    youAreHereText.enabled = false;
-    //    xText.enabled = false;
-    //    treasureChest.SetActive(false);
-    //    questCube.SetActive(false);
-
-    //    //initialize the UI text with the item count
-    //    UpdateItemCountText();
-    //}
-
     public void EnemyDefeated()
     {
         enemyCount--;
@@ -72,22 +60,7 @@ public class EnemyController : MonoBehaviour
 
         if (enemyCount == 0)
         {
-           //save treasure collected 
-
+           treasure.SetActive(true);
         }
     }
-    //public void UpdateItemCountText()
-    //{
-    //    itemCountText.text = "Items: " + itemCount.ToString();
-    //}
-    //public void ChestCollected()
-    //{
-    //    itemCount = 10;
-    //    UpdateItemCountText();
-    //    mapImage.enabled = false;
-    //    youAreHereImage.enabled = false;
-    //    xImage.enabled = false;
-    //    youAreHereText.enabled = false;
-    //    xText.enabled = false;
-    //}
 }

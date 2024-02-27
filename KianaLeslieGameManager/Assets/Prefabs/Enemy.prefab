@@ -222,6 +222,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8553d1760c38784ea4e241e4751b538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyCount: 3
+  bullet: {fileID: 2841551636485802442, guid: c8940848e7f337449990b8da45eca903, type: 3}
+  bulletSpawn: {fileID: 7404231811158228279}
+  treasure: {fileID: 0}
+  health: {fileID: 7404231811128977099}
 --- !u!114 &7404231811128977099
 MonoBehaviour:
   m_ObjectHideFlags: 0
