@@ -11,6 +11,8 @@ public class PlayerInfo : MonoBehaviour
     public Vector3 townLocation;
     public string currentScene;
     public int treasure;
+    public int health;
+    public List<TownSaveInfo> townList;
 
     private void Awake()
     {

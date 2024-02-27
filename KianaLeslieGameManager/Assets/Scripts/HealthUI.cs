@@ -6,9 +6,7 @@ using UnityEngine.UI;
 public class HealthUI : MonoBehaviour
 {
     int maxHealth;
-    int health;
-    //public EnemyController enemy;
-
+    public int health;
     [SerializeField] Image healthUI;
 
     void Start()
@@ -16,7 +14,6 @@ public class HealthUI : MonoBehaviour
         maxHealth = 30;
         health = maxHealth;
     }
-
     public void DealDamage(int damage)
     {
         health -= damage;
@@ -25,7 +22,11 @@ public class HealthUI : MonoBehaviour
         if (health <= 0)
         {
             gameObject.SetActive(false);
-            //enemy.EnemyDefeated();
         }
+    }
+    public void ResetHealth(int newHealth)
+    {
+        health = newHealth;
+        healthUI.transform.localScale = new Vector3(health / (float)maxHealth, 1, 1);
     }
 }

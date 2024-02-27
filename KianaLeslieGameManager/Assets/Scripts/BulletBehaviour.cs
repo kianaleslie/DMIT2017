@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class BulletBehaviour : MonoBehaviour
 {
-    int damage = 10;
+    public EnemyController enemyHealth;
     private void OnCollisionEnter(Collision collision)
     {
-        HealthUI health = collision.gameObject.GetComponent<HealthUI>();
-        if (health != null)
+        if(collision.gameObject.CompareTag("Enemy"))
         {
-            health.DealDamage(damage);
+            enemyHealth.health.DealDamage(10);
+            gameObject.SetActive(false);
         }
-
-        gameObject.SetActive(false);
     }
-
 }

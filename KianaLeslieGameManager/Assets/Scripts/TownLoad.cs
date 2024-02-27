@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TownLoad : MonoBehaviour
 {
-    [SerializeField] Transform exitLocation;
+    //[SerializeField] Transform exitLocation;
     [SerializeField] string townName;
     bool transition = false;
     PlayerController player;

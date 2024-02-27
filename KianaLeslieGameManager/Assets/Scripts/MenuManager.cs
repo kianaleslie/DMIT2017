@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField] Button button;
+
     void Start()
     {
         Load();
@@ -20,6 +22,12 @@ public class MenuManager : MonoBehaviour
             XmlSerializer serializer = new XmlSerializer(typeof(PlayerInfo));
             SaveManager.playerInfo = (PlayerInfo)serializer.Deserialize(stream);
             stream.Close();
+            button.interactable = true;
+        }
+        else
+        {
+            button.interactable = false;
+            SaveManager.playerInfo = new PlayerInfo();
         }
     }
     public void Resume()
@@ -33,6 +41,7 @@ public class MenuManager : MonoBehaviour
         {
             File.Delete($"{SaveManager.path} /GameData");
         }
+        SaveManager.ResetInfo();
         SceneManager.LoadScene(1);
     }
     public void Quit()

@@ -293,8 +293,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 21.388329, y: 7.7912083, z: 21.474552}
-  m_Center: {x: 0.8954773, y: 3.3956041, z: -0.34425306}
+  m_Size: {x: 51.29197, y: 7.7912083, z: 48.869534}
+  m_Center: {x: 3.2019272, y: 3.3956041, z: -1.7631016}
 --- !u!114 &609644679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +489,14 @@ PrefabInstance:
       propertyPath: treasure
       value: 
       objectReference: {fileID: 1728086079}
+    - target: {fileID: 7404231811128977098, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
+      propertyPath: enemyCount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404231811128977098, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
+      propertyPath: currentTown
+      value: Town4
+      objectReference: {fileID: 0}
     - target: {fileID: 7404231811128977101, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -554,6 +562,14 @@ PrefabInstance:
       propertyPath: treasure
       value: 
       objectReference: {fileID: 1728086079}
+    - target: {fileID: 7404231811128977098, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
+      propertyPath: enemyCount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404231811128977098, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
+      propertyPath: currentTown
+      value: Town4
+      objectReference: {fileID: 0}
     - target: {fileID: 7404231811128977101, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -640,7 +656,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734862707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.4, y: 0, z: -8.2}
+  m_LocalPosition: {x: 17.9, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -662,6 +678,14 @@ PrefabInstance:
       propertyPath: treasure
       value: 
       objectReference: {fileID: 1728086079}
+    - target: {fileID: 7404231811128977098, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
+      propertyPath: enemyCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404231811128977098, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
+      propertyPath: currentTown
+      value: Town4
+      objectReference: {fileID: 0}
     - target: {fileID: 7404231811128977101, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
       propertyPath: m_RootOrder
       value: 8

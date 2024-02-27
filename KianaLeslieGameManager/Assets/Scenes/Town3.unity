@@ -394,8 +394,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 22.32727, y: 6.4537683, z: 22.496511}
-  m_Center: {x: 1.0398812, y: 2.7268841, z: 0.13596821}
+  m_Size: {x: 45.940193, y: 6.4537683, z: 41.361683}
+  m_Center: {x: 6.6594696, y: 2.7268841, z: -0.46941566}
 --- !u!4 &1073645793
 Transform:
   m_ObjectHideFlags: 0
@@ -488,6 +488,14 @@ PrefabInstance:
       propertyPath: treasure
       value: 
       objectReference: {fileID: 1312618969}
+    - target: {fileID: 7404231811128977098, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
+      propertyPath: enemyCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404231811128977098, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
+      propertyPath: currentTown
+      value: Town3
+      objectReference: {fileID: 0}
     - target: {fileID: 7404231811128977101, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -549,6 +557,14 @@ PrefabInstance:
       propertyPath: treasure
       value: 
       objectReference: {fileID: 1312618969}
+    - target: {fileID: 7404231811128977098, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
+      propertyPath: enemyCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404231811128977098, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
+      propertyPath: currentTown
+      value: Town3
+      objectReference: {fileID: 0}
     - target: {fileID: 7404231811128977101, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -610,6 +626,14 @@ PrefabInstance:
       propertyPath: treasure
       value: 
       objectReference: {fileID: 1312618969}
+    - target: {fileID: 7404231811128977098, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
+      propertyPath: enemyCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404231811128977098, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
+      propertyPath: currentTown
+      value: Town3
+      objectReference: {fileID: 0}
     - target: {fileID: 7404231811128977101, guid: d25d1914caae8814ab23fcd6977bf0fe, type: 3}
       propertyPath: m_RootOrder
       value: 8
