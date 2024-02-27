@@ -11,7 +11,7 @@ public class TownManager : MonoBehaviour
 
     void Start()
     {                                 
-        GameObject.FindGameObjectWithTag("Player").transform.position = /*spawnLocation.position*/ transform.position + PlayerInfo.piInstance.spawnLocation.normalized * 7.5f;
+        GameObject.FindGameObjectWithTag("Player").transform.position = /*spawnLocation.position*/ transform.position + PlayerInfo.piInstance.spawnLocation.normalized * 3f;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
