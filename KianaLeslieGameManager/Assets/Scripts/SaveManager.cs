@@ -7,8 +7,9 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     public static string path = "SaveData";
+    public static PlayerInfo playerInfo;
 
-    public static void SaveData(PlayerInfo playerInfo)
+    public static void SaveData()
     {
         if (!Directory.Exists(path))
         {
@@ -30,5 +31,11 @@ public class SaveManager : MonoBehaviour
             stream.Close();
         }
         return loadPlayerInfo;
+    }
+    public static void ResetInfo()
+    {
+        playerInfo = new PlayerInfo();
+
+        //reset enemies, health, treasure, spawn, scene
     }
 }

@@ -6,18 +6,37 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-    bool isLookingAt = false;
-    PlayerController player;
+    float attackRange = 10f;
+    float attackDamage = 3f;
+    float attackCooldown = 1f;
+    float attackTime;
 
-    private void Update()
+    int enemyCount = 3;
+    Transform player;
+
+    void Start()
     {
-        if(PlayerFound.found)
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    void Update()
+    {
+        if (Vector3.Distance(transform.position, player.position) <= attackRange)
         {
-            isLookingAt = true;
+            AttackPlayer();
         }
-        if(isLookingAt)
+    }
+
+    void AttackPlayer()
+    {
+        if (Time.time - attackTime >= attackCooldown)
         {
-            transform.LookAt(player.transform);
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.health.DealDamage((int)attackDamage);
+            }
+            attackTime = Time.time;
         }
     }
     //public Image mapImage;
@@ -46,27 +65,17 @@ public class EnemyController : MonoBehaviour
     //    UpdateItemCountText();
     //}
 
-    //public void EnemyDefeated()
-    //{
-    //    enemyCount--;
+    public void EnemyDefeated()
+    {
+        enemyCount--;
+        //save enemy count
 
-    //    //check if the player has defeated all 3 enemies
-    //    if (enemyCount == 0)
-    //    {
-    //        //show the map when enemies = 0
-    //        mapImage.enabled = true;
-    //        youAreHereImage.enabled = true;
-    //        xImage.enabled = true;
-    //        youAreHereText.enabled = true;
-    //        xText.enabled = true;
-    //        treasureChest.SetActive(true);
-    //        questCube.SetActive(true);
-    //        itemCount = 1;
-    //    }
+        if (enemyCount == 0)
+        {
+           //save treasure collected 
 
-    //    //update the UI text with the current item count
-    //    UpdateItemCountText();
-    //}
+        }
+    }
     //public void UpdateItemCountText()
     //{
     //    itemCountText.text = "Items: " + itemCount.ToString();

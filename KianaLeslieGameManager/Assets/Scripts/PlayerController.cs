@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     float rotateSpeed;
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject bulletSpawn;
-    HealthUI health;
+    public HealthUI health;
     [SerializeField] TextMeshProUGUI treasureText;
     [SerializeField] TextMeshProUGUI restText;
     bool isPlayerResting = false;

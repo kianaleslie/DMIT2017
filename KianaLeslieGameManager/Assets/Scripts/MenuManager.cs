@@ -33,11 +33,11 @@ public class MenuManager : MonoBehaviour
             stream.Close();
             resumeButton.interactable = true;
         }
-        //else
-        //{
-        //    resumeButton.interactable = false;
-        //    SaveManager.playerInfo = new PlayerInfo();
-        //}
+        else
+        {
+            resumeButton.interactable = false;
+            SaveManager.playerInfo = new PlayerInfo();
+        }
     }
     public void Quit()
     {

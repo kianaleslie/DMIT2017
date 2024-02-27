@@ -43,10 +43,10 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
-    public void SaveProgress()
-    {
-        SaveManager.SaveData();
-    }
+    //public void SaveProgress()
+    //{
+    //    SaveManager.SaveData();
+    //}
     public void QuitGame()
     {
         Application.Quit();
