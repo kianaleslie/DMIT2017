@@ -24,4 +24,12 @@ public class ChestController : MonoBehaviour
             isOpen = true;
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (isOpen && other.CompareTag("Player"))
+        {
+            chestUnlocking.SetTrigger("Chest Closed");
+            isOpen = false;
+        }
+    }
 }

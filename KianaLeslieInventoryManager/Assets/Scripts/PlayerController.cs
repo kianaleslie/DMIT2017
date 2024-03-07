@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        moveSpeed = 3.0f;
-        rotateSpeed = 15.0f;
+        moveSpeed = 10.0f;
+        rotateSpeed = 50.0f;
     }
     private void FixedUpdate()
     {
