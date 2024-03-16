@@ -38,6 +38,14 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 0f;
         gamePaused = true;
     }
+    void SaveData()
+    {
+
+    }
+    void LoadData()
+    {
+
+    }
     public void QuitGame()
     {
         Application.Quit();

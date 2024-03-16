@@ -19,13 +19,9 @@ public class ChestController : MonoBehaviour
     public GameObject weaponPanel;
     public GameObject armorPanel;
     public GameObject treasurePanel;
-
-    public InventoryManager inventoryManager;
     public TextMeshProUGUI weaponText;
     public TextMeshProUGUI armorText;
-
-    string selectedWeapon;
-    string selectedArmor;
+    public TextMeshProUGUI enemyDefeatedText;
 
     private Animator chestUnlocking;
     bool isOpen = false;
@@ -190,28 +186,32 @@ public class ChestController : MonoBehaviour
         this.displayText2.text = displayText2;
         this.displayText3.text = displayText3;
     }
-    public void SetSelectedWeapon1(string weaponName)
+    public void SetSelectedWeapon1()
     {
         weaponText.text = displayText.text;
     }
-    public void SetSelectedWeapon2(string weaponName)
+    public void SetSelectedWeapon2()
     {
         weaponText.text = displayText2.text;
     }
-    public void SetSelectedWeapon3(string weaponName)
+    public void SetSelectedWeapon3()
     {
         weaponText.text = displayText3.text;
     }
-    public void SetSelectedArmor1(string armorName)
+    public void SetSelectedArmor1()
     {
         armorText.text = displayText.text;
     }
-    public void SetSelectedArmor2(string armorName)
+    public void SetSelectedArmor2()
     {
         armorText.text = displayText2.text;
     }
-    public void SetSelectedArmor3(string armorName)
+    public void SetSelectedArmor3()
     {
         armorText.text = displayText3.text;
+    }
+    public void UpdateEnemyDefeatedUI()
+    {
+        enemyDefeatedText.text = $"Enemy defeated with {weaponText.text}, while protected by {armorText.text}";
     }
 }
