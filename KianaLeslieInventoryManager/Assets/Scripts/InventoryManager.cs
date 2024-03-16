@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    //public List<Weapon> weapons;
+    string currentWeapon;
+    string currentArmor;
 
-    void Start()
+    public void SetWeapon(string weapon)
     {
-        
+        currentWeapon = weapon;
     }
-
-    // Update is called once per frame
-    void Update()
+    public string GetWeapon()
     {
-        
+        return currentWeapon;
+    }
+    public void SetArmor(string armor)
+    {
+        currentArmor = armor;
+    }
+    public string GetArmor()
+    {
+        return currentArmor;
     }
 }
