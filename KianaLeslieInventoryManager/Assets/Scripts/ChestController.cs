@@ -54,6 +54,8 @@ public class ChestController : MonoBehaviour
         }
         CloseChest();
     }
+    
+    //methods to open and close the chest (ui handling)
     public void OpenChest()
     {
         switch (chestType)
@@ -87,6 +89,8 @@ public class ChestController : MonoBehaviour
         armorPanel.SetActive(false);
         treasurePanel.SetActive(false);
     }
+
+    //methods to fill in random chest data
     public void DisplayWeapons()
     {
         string[] weapons =
@@ -186,6 +190,8 @@ public class ChestController : MonoBehaviour
         this.displayText2.text = displayText2;
         this.displayText3.text = displayText3;
     }
+
+    //methods for each button for weapons and armor
     public void SetSelectedWeapon1()
     {
         weaponText.text = displayText.text;
@@ -210,6 +216,8 @@ public class ChestController : MonoBehaviour
     {
         armorText.text = displayText3.text;
     }
+
+    //method to update the ui when the enemy is defeated
     public void UpdateEnemyDefeatedUI()
     {
         enemyDefeatedText.text = $"Enemy defeated with {weaponText.text}, while protected by {armorText.text}";
