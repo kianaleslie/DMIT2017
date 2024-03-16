@@ -13,9 +13,9 @@ public class SaveManager : MonoBehaviour
     //save method to save the current items in the chests
     public void SaveGame()
     {
-        if (!Directory.Exists($"{path}/InventoryData"))
+        if (!Directory.Exists($"{path}"))
         {
-            Directory.CreateDirectory($"{path}/InventoryData");
+            Directory.CreateDirectory($"{path}");
         }
         GameState gameState = new GameState();
 
