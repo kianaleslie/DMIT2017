@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class EnemyController : MonoBehaviour
 {
     float attackRange = 7.0f;
-    float attackCooldown = 3.0f;
-    float attackTime;
+    //float attackCooldown = 3.0f;
+    //float attackTime;
 
     public int enemyCount;
     [SerializeField] GameObject bullet;
@@ -20,6 +20,8 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        DontDestroyOnLoad(gameObject);
+        gameObject.SetActive(true);
     }
     void Update()
     {

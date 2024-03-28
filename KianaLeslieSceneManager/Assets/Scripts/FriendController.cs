@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class FriendController : MonoBehaviour
 {
-    public Transform player;
+    Transform player;
+    public float distance = 2.0f;
+    public float minDistance = 1.0f;
     public float friendSpeed = 5.0f;
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        DontDestroyOnLoad(gameObject);
+    }
     void Update()
     {
         if (player != null)
         {
-            Vector3 direction = player.position - transform.position;
+            Vector3 position = player.position - player.forward * distance;
+            Vector3 direction = position - transform.position;
+            float currentDistance = direction.magnitude;
             direction.Normalize();
             transform.position += direction * friendSpeed * Time.deltaTime;
+
+            if (currentDistance > minDistance)
+            {
+                transform.position += direction * friendSpeed * Time.deltaTime;
+            }
         }
     }
     void OnTriggerEnter(Collider other)
@@ -23,17 +37,4 @@ public class FriendController : MonoBehaviour
             player = other.transform;
         }
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        if (player != null)
-    //        {
-    //            Vector3 dir = player.position - transform.position;
-    //            dir.Normalize();
-    //            transform.position += dir * friendSpeed * Time.deltaTime;
-    //        }
-    //    }
-    //}
 }

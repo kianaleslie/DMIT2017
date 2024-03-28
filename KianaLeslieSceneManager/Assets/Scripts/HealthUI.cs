@@ -13,6 +13,8 @@ public class HealthUI : MonoBehaviour
     {
         maxHealth = 30;
         health = maxHealth;
+        DontDestroyOnLoad(gameObject);
+        gameObject.SetActive(true);
     }
     public void DealDamage(int damage)
     {

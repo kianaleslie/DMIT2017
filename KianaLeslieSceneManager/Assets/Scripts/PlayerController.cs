@@ -10,13 +10,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject bulletSpawn;
     public HealthUI health;
-    
+    //[SerializeField] GameObject followPlayer;
+    //public bool isSaved;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        moveSpeed = 10.0f;
+        moveSpeed = 15.0f;
         rotateSpeed = 50.0f;
+        //isSaved = false;
     }
     private void FixedUpdate()
     {
@@ -48,4 +50,19 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("FriendSpot"))
+    //    {
+    //        if (!isSaved)
+    //        {
+    //            isSaved = true;
+    //            GameObject friend = GameObject.FindGameObjectWithTag("Friend");
+    //            friend.transform.SetParent(followPlayer.transform);
+    //            friend.transform.localPosition = Vector3.zero;
+    //            friend.transform.localRotation = followPlayer.transform.localRotation;
+    //        }
+    //    }
+    //}
 }

@@ -827,6 +827,7 @@ Transform:
   - {fileID: 1878181073}
   - {fileID: 1361712231}
   - {fileID: 817637731}
+  - {fileID: 2052552022}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -874,9 +875,8 @@ MonoBehaviour:
   bullet: {fileID: 5019820719172984702, guid: a57d33c9a9202f8469ae36cfb840c63f, type: 3}
   bulletSpawn: {fileID: 817637730}
   health: {fileID: 1326749979}
-  friend: {fileID: 8779945206080895353, guid: caeef0383c8eb724e97137108cbc3cb5, type: 3}
-  player: {fileID: 1326749974}
-  friendSpeed: 5
+  followPlayer: {fileID: 2052552021}
+  isSaved: 0
 --- !u!82 &1326749978
 AudioSource:
   m_ObjectHideFlags: 0
@@ -889,7 +889,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fd5f4a5a2eda14c49a51f17e70ba0073, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6032,7 +6032,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878181070}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.19, y: 20.2, z: 6.86}
+  m_LocalPosition: {x: 0.19, y: 13.1, z: 6.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6255,6 +6255,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2052552021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2052552022}
+  m_Layer: 0
+  m_Name: FollowPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2052552022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052552021}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.3700008, y: -0.33999997, z: -1.5300007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1326749974}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2513903811615952761
 PrefabInstance:
